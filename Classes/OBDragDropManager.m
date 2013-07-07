@@ -14,7 +14,7 @@
 
 @implementation OBOvum
 
-//@synthesize source;
+@synthesize source;
 @synthesize dataObject;
 @synthesize tag;
 @synthesize dropAction;
