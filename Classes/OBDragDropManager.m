@@ -14,7 +14,7 @@
 
 @implementation OBOvum
 
-@synthesize source;
+//@synthesize source;
 @synthesize dataObject;
 @synthesize tag;
 @synthesize dropAction;
@@ -46,8 +46,6 @@
   self.tag = nil;
   self.source = nil;
   self.dragView = nil;
-
-  [super dealloc];
 }
 
 @end
@@ -101,8 +99,6 @@
 -(void) dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:[UIApplication sharedApplication]];
-
-  [super dealloc];
 }
 
 
@@ -139,7 +135,7 @@
     self.overlayWindow = nil;
   }
 
-  self.overlayWindow = [[[UIWindow alloc] initWithFrame:mainWindow.frame] autorelease];
+  self.overlayWindow = [[UIWindow alloc] initWithFrame:mainWindow.frame];
   self.overlayWindow.windowLevel = UIWindowLevelAlert;
   self.overlayWindow.hidden = YES;
   self.overlayWindow.userInteractionEnabled = NO;
@@ -281,7 +277,7 @@
 {
   if ([recognizerClass isSubclassOfClass:[UIGestureRecognizer class]])
   {
-    UIGestureRecognizer *recognizer = [[[recognizerClass alloc] initWithTarget:self action:@selector(handleOvumGesture:)] autorelease];
+    UIGestureRecognizer *recognizer = [[recognizerClass alloc] initWithTarget:self action:@selector(handleOvumGesture:)];
     recognizer.ovumSource = source;
     return recognizer;
   }
@@ -315,7 +311,7 @@
     {
       CGRect frameInOriginalWindow = [sourceView convertRect:sourceView.bounds toView:sourceView.window];
       CGRect frameInOverlayWindow = [overlayWindow convertRect:frameInOriginalWindow fromWindow:sourceView.window];
-      dragView = [[[UIView alloc] initWithFrame:frameInOverlayWindow] autorelease];
+      dragView = [[UIView alloc] initWithFrame:frameInOverlayWindow];
       dragView.opaque = NO;
       dragView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.33];
     }
